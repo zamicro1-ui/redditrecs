@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Best {{ category.name }} - RedditRecs Clone{% endblock %}
+{% block description %}Top {{ category.name }} based on reviews from Redditors.{% endblock %}
+
+{% block body %}
+    <section class="category-hero">
+        <div class="container">
+            <div class="breadcrumbs">
+                <a href="{{ path('app_home') }}">Home</a> / <span>{{ category.name }}</span>
+            </div>
+            <h1>Top {{ category.name }}</h1>
+            <p class="subtitle">Based on reviews from <strong>Redditors</strong></p>
+        </div>
+    </section>
+
+    <section class="brands-section">
+        <div class="container">
+            <h2 class="section-title">Popular Brands</h2>
+            <div class="brands-grid">
+                {% for brand in brands %}
+                    <div class="brand-card" onclick="window.location.href='{{ path('app_brand', {category_slug: category.slug, brand_slug: brand.slug}) }}'">
+                        <span class="brand-name">{{ brand.name }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section class="product-list-section">
+        <div class="container">
+            <div class="product-list">
+                
+                {% for product in models %}
+                    <div class="product-card">
+                        <div class="rank-badge">#{{ loop.index }}</div>
+                        <div class="product-content">
+                            {# product is an instance of Model entity. It has getBrand().getName() #}
+                            <h2 class="product-title">{{ product.brand.name }} {{ product.name }}</h2>
+                            <div class="product-details">
+                                <div class="pros-cons">
+                                    <div class="pro-item">{{ product.description }}</div>
+                                </div>
+                                <div class="product-actions">
+                                    <a href="#" class="btn btn-price">Amazon</a>
+                                    <a href="{{ path('app_model', {category_slug: category.slug, model_slug: product.slug}) }}" class="view-analysis">View Analysis</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <h3 class="faq-question">How are these ranked?</h3>
+                    <div class="faq-answer">
+                        <p>We analyze thousands of comments from Reddit communities. We use sentiment analysis to identify positive and negative opinions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

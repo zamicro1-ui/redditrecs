@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Best {{ brand.name }} {{ category.name }} - RedditRecs Clone{% endblock %}
+{% block description %}Top {{ brand.name }} {{ category.name }} based on reviews from Redditors.{% endblock %}
+
+{% block body %}
+    <section class="category-hero">
+        <div class="container">
+            <div class="breadcrumbs">
+                <a href="{{ path('app_home') }}">Home</a> / 
+                <a href="{{ path('app_category', {slug: category.slug}) }}">{{ category.name }}</a> /
+                <span>Brand</span> / <span>{{ brand.name }}</span>
+            </div>
+            <h1>Top {{ brand.name }} {{ category.name }}</h1>
+            <p class="subtitle">Based on reviews from <strong>Redditors</strong></p>
+        </div>
+    </section>
+
+    <section class="product-list-section">
+        <div class="container">
+            <div class="product-list">
+                
+                {% for product in models %}
+                    <div class="product-card">
+                        <div class="rank-badge">#{{ loop.index }}</div>
+                        <div class="product-content">
+                            <h2 class="product-title">{{ product.brand.name }} {{ product.name }}</h2>
+                            <div class="product-details">
+                                <div class="pros-cons">
+                                    <div class="pro-item">{{ product.description }}</div>
+                                </div>
+                                <div class="product-actions">
+                                    <a href="#" class="btn btn-price">Amazon</a>
+                                    <a href="{{ path('app_model', {category_slug: category.slug, model_slug: product.slug}) }}" class="view-analysis">View Analysis</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <p>No products found for this brand in this category.</p>
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+{% endblock %}

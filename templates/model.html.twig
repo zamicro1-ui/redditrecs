@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ model.brand.name }} {{ model.name }} Review - RedditRecs Clone{% endblock %}
+{% block description %}Detailed analysis of {{ model.name }} based on Reddit reviews.{% endblock %}
+
+{% block body %}
+    <section class="product-hero">
+        <div class="container">
+            <div class="breadcrumbs">
+                <a href="{{ path('app_home') }}">Home</a> / 
+                <a href="{{ path('app_category', {slug: model.category.slug}) }}">{{ model.category.name }}</a> /
+                <span>{{ model.brand.name }} {{ model.name }}</span>
+            </div>
+
+            <div class="product-header">
+                <h1>{{ model.brand.name }} - {{ model.name }}</h1>
+                <div class="sentiment-summary">
+                    {# Placeholder logic #}
+                    <div class="sentiment-badge positive">✅ 85% Positive</div>
+                    <div class="sentiment-badge neutral">😐 Neutral</div>
+                    <div class="sentiment-badge negative">❌ Negative</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="product-details-section">
+        <div class="container">
+
+            <div class="analysis-grid">
+                <!-- Liked Most Column -->
+                <div class="analysis-column">
+                    <h2 class="column-title liked">Liked most:</h2>
+
+                    <div class="topic-group">
+                        <h3 class="topic-title">General Feedback</h3>
+                        <div class="review-snippets">
+                            <div class="snippet">
+                                "{{ model.description }}"
+                            </div>
+                            <!-- Hardcoded snippet for demo feel -->
+                            <div class="snippet">
+                                "This is a placeholder for a real user review fetched from the database."
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Disliked Most Column -->
+                <div class="analysis-column">
+                    <h2 class="column-title disliked">Disliked most:</h2>
+
+                    <div class="topic-group">
+                        <h3 class="topic-title">Issues & Concerns</h3>
+                        <div class="review-snippets">
+                            <div class="snippet">
+                                "Placeholder for negative feedback / cons analysis."
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+{% endblock %}

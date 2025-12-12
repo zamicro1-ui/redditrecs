@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}RedditRecs Clone{% endblock %}</title>
+        <meta name="description" content="{% block description %}Find the best products based on Reddit discussions.{% endblock %}">
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+        
+        <link rel="stylesheet" href="{{ asset('styles/app.css') }}">
+        {% block stylesheets %}{% endblock %}
+    </head>
+    
+    <body>
+        <header>
+            <div class="container">
+                <nav>
+                    <a href="{{ path('app_home') }}" class="logo">RedditRecs</a>
+                    <div class="nav-links">
+                        <a href="#">Categories</a>
+                        <a href="#">About</a>
+                        <a href="#">Blog</a>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <main>
+            {% block body %}{% endblock %}
+        </main>
+
+        <footer>
+            <div class="container">
+                <p>&copy; 2024 RedditRecs Clone. Built for demo purposes.</p>
+            </div>
+        </footer>
+        
+        {% block javascripts %}{% endblock %}
+            {% block importmap %}{{ importmap('app') }}{% endblock %}
+    </body>
+</html>

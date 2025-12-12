@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}RedditRecs Clone - Top Products Ranked by Reddit{% endblock %}
+{% block description %}Find the best products based on Reddit discussions and sentiment analysis.{% endblock %}
+
+{% block body %}
+    <section class="hero">
+        <div class="container">
+            <h1>Stop researching.<br>Start buying with confidence.</h1>
+            <p class="subtitle">We analyze thousands of Reddit comments to find the products people actually love.</p>
+            <div class="search-bar">
+                <input type="text" placeholder="Search for a category (e.g., 'Portable Monitors')...">
+                <button>Search</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">Popular Categories</h2>
+            <div class="grid">
+                {% set icons = {
+                    'portable-monitors': '🖥️',
+                    'gaming-mice': '🖱️',
+                    'mechanical-keyboards': '⌨️',
+                    'headphones': '🎧',
+                    'webcams': '📷',
+                    'microphones': '🎙️',
+                    'gaming-chairs': '🪑',
+                    'vr-headsets': '🥽'
+                } %}
+
+                {% for category in categories %}
+                    {% set icon = icons[category.slug] ?? '📦' %}
+                    <a href="{{ path('app_category', {slug: category.slug}) }}" class="card">
+                        <div class="card-icon">{{ icon }}</div>
+                        <h3>{{ category.name }}</h3>
+                        <p>{{ category.models|length }} models analyzed</p>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,13 @@
+framework:
+    secret: '%env(APP_SECRET)%'
+
+    # Disable extra components we don't need
+    annotations: false
+    http_method_override: false
+    handle_all_throwables: true
+
+    # Only enable sessions if your app uses them
+    session: false
+
+    php_errors:
+        log: true
