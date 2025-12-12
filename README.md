@@ -39,7 +39,7 @@ php bin/console doctrine:migrations:migrate
 ### 4. Run the Server
 
 ```bash
-php -S 127.0.0.1:8000 -t public
+/Applications/MAMP/bin/php/php8.4.15/bin/php -S 127.0.0.1:8000 -t public
 ```
 
 Visit `http://127.0.0.1:8000`.
